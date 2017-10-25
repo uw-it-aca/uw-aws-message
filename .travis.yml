@@ -1,0 +1,26 @@
+sudo: false
+language: python
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+before_script:
+- pip install -e .
+- pip install pep8
+- pip install nose2
+- pip install coverage
+- pip install python-coveralls
+- bash travis-ci/build_certs.sh
+- python travis-ci/live_server.py &
+- python travis-ci/live_ssl_server.py &
+- python travis-ci/live_ssl_bad_server.py &
+script:
+- pep8 uw_aws_message --exclude uw_aws_message/tests/
+- python -m compileall restclients_core/
+- RUN_LIVE_TESTS=1 RUN_SSL_TESTS=1 coverage run uw_aws_message/test.py -v
+after_script:
+- coveralls
+before_deploy:
+- find uw_aws_message/ -name \*.pyc -exec rm {} \;
+- echo $TRAVIS_TAG > uw_aws_message/VERSION

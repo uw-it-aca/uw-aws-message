@@ -1,0 +1,4 @@
+[run]
+branch = True
+source = uw_aws_message
+include = uw_aws_message/*
