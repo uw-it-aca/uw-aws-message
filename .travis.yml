@@ -11,14 +11,10 @@ before_script:
 - pip install nose2
 - pip install coverage
 - pip install python-coveralls
-- bash travis-ci/build_certs.sh
-- python travis-ci/live_server.py &
-- python travis-ci/live_ssl_server.py &
-- python travis-ci/live_ssl_bad_server.py &
 script:
 - pep8 uw_aws_message --exclude uw_aws_message/tests/
 - python -m compileall restclients_core/
-- RUN_LIVE_TESTS=1 RUN_SSL_TESTS=1 coverage run uw_aws_message/test.py -v
+- coverage run uw_aws_message/test.py -v
 after_script:
 - coveralls
 before_deploy:

@@ -22,7 +22,7 @@ setup(
     author="UW-IT AXDD",
     author_email="aca-it@uw.edu",
     include_package_data=True,
-    install_requires=[],
+    install_requires=['django-aws-message'],
     license='Apache License, Version 2.0',
     description=('A client for processing AWS SNS and SQS messages from '
                  'University of Washington data sources.'),
