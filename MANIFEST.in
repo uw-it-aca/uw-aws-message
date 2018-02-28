@@ -1,0 +1,2 @@
+include uw_aws_message/VERSION
+recursive-include uw_aws_message *
